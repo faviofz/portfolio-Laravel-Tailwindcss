@@ -18,6 +18,6 @@ class MessageController extends Controller
 
         Mail::to('admin@example.com')->send(new MessageReceived($data));
 
-        return 'Mensaje Enviado';
+        return back()->with('status', 'Mensaje enviado correctamente');
     }
 }

@@ -39,7 +39,8 @@ class ProjectController extends Controller
     public function store(SaveProjectRequest $request)
     {
         Project::create($request->validated());
-        return redirect()->route('project.index');
+
+        return redirect()->route('project.index')->with('status', 'El proyecto se guardó con éxito.');
     }
 
     /**
@@ -74,7 +75,8 @@ class ProjectController extends Controller
     public function update(Project $project, SaveProjectRequest $request)
     {
         $project->update($request->validated());
-        return redirect()->route('project.show', $project);
+
+        return redirect()->route('project.show', $project)->with('status', 'El proyecto se actualizó con éxito.');
     }
 
     /**
@@ -87,6 +89,6 @@ class ProjectController extends Controller
     {
         $project->delete();
 
-        return redirect()->route('project.index');
+        return redirect()->route('project.index')->with('status', 'El proyecto se eliminó con éxito.');
     }
 }
