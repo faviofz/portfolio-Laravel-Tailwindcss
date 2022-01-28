@@ -16,7 +16,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::view('/', 'index')->name('index');
+Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
 
 Route::resource('portfolio', ProjectController::class)

@@ -2062,6 +2062,8 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./helper */ "./resources/js/helper.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -2092,6 +2094,18 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/helper.js":
+/*!********************************!*\
+  !*** ./resources/js/helper.js ***!
+  \********************************/
+/***/ (() => {
+
+document.getElementById('menu-button').addEventListener('click', function () {
+  document.getElementById('mobile-menu').classList.toggle('hidden');
+});
 
 /***/ }),
 

@@ -9,12 +9,14 @@
     <title>@yield('title')</title>
 </head>
 
-<body>
+<body class="font-serif">
     @include('partials.nav')
 
     @include('partials.session-status')
 
     @yield('content')
 </body>
+
+<script src="/js/app.js"></script>
 
 </html>
