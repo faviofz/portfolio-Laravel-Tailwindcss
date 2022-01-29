@@ -2105,6 +2105,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 document.getElementById('menu-button').addEventListener('click', function () {
   document.getElementById('mobile-menu').classList.toggle('hidden');
+  document.getElementById('menu-button').firstElementChild.classList.toggle('hidden');
+  document.getElementById('menu-button').lastElementChild.classList.toggle('hidden');
 });
 
 /***/ }),

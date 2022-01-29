@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="font-sans">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <title>@yield('title')</title>
 </head>
 
-<body class="font-serif">
+<body>
     @include('partials.nav')
 
     @include('partials.session-status')
