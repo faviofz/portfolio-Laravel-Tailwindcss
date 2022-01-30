@@ -9,12 +9,17 @@
     <title>@yield('title')</title>
 </head>
 
-<body>
-    @include('partials.nav')
-
-    @include('partials.session-status')
-
-    @yield('content')
+<body class="flex flex-col justify-between h-screen bg-slate-100">
+    <header>
+        @include('partials.nav')
+        @include('partials.session-status')
+    </header>
+    <main>
+        @yield('content')
+    </main>
+    <footer class="py-3 text-center border-t bg-white">
+        {{ config('app.name') }} | Copyright {{ date('Y') }}
+    </footer>
 </body>
 
 <script src="/js/app.js"></script>
