@@ -16,13 +16,13 @@
 
             <label class="block" for="email">
                 Email:
-                <input class="block w-full bg-slate-200 rounded p-1 outline-sky-500 placeholder:italic" type="email"
+                <input class="block w-full h-8 bg-slate-200 rounded p-1 outline-sky-500 placeholder:italic" type="email"
                     name="email" id="email" placeholder="Email...">
             </label>
 
             <label class="block" for="password">
                 Contraseña:
-                <input class="block w-full bg-slate-200 rounded p-1 outline-sky-500 placeholder:italic" type="password"
+                <input class="block w-full h-8 bg-slate-200 rounded p-1 outline-sky-500 placeholder:italic" type="password"
                     name="password" id="password" placeholder="Contraseña...">
             </label>
 
