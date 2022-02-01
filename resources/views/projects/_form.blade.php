@@ -1,5 +1,11 @@
 @csrf
 
+<h1 class="text-sky-500 font-semibold text-lg">
+    {{ $h1 }}
+</h1>
+
+<hr>
+
 @include('partials.validation-errors')
 
 <label for="title" class="block">
