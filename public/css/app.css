@@ -472,16 +472,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .z-0 {
   z-index: 0;
 }
-.order-last {
-  order: 9999;
-}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
-}
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
 }
 .my-1 {
   margin-top: 0.25rem;
@@ -565,6 +558,15 @@ Ensure the default browser behavior of the `hidden` attribute.
 .h-40 {
   height: 10rem;
 }
+.h-3\/4 {
+  height: 75%;
+}
+.h-5\/6 {
+  height: 83.333333%;
+}
+.h-2\/3 {
+  height: 66.666667%;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -583,6 +585,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 .w-auto {
   width: auto;
 }
+.w-5\/6 {
+  width: 83.333333%;
+}
 .max-w-xl {
   max-width: 36rem;
 }
@@ -592,8 +597,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 .flex-1 {
   flex: 1 1 0%;
 }
+.shrink-0 {
+  flex-shrink: 0;
+}
 .grow {
   flex-grow: 1;
+}
+.grow-0 {
+  flex-grow: 0;
 }
 .cursor-default {
   cursor: default;
@@ -618,9 +629,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .flex-wrap {
   flex-wrap: wrap;
-}
-.place-items-center {
-  place-items: center;
 }
 .items-end {
   align-items: flex-end;
@@ -663,6 +671,9 @@ Ensure the default browser behavior of the `hidden` attribute.
 }
 .self-center {
   align-self: center;
+}
+.justify-self-center {
+  justify-self: center;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1128,24 +1139,12 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-column: span 4 / span 4;
   }
 
-  .md\:col-span-1 {
-    grid-column: span 1 / span 1;
-  }
-
   .md\:col-start-2 {
     grid-column-start: 2;
   }
 
   .md\:col-start-3 {
     grid-column-start: 3;
-  }
-
-  .md\:col-start-1 {
-    grid-column-start: 1;
-  }
-
-  .md\:row-span-3 {
-    grid-row: span 3 / span 3;
   }
 
   .md\:mb-0 {
@@ -1172,14 +1171,6 @@ Ensure the default browser behavior of the `hidden` attribute.
     width: auto;
   }
 
-  .md\:grid-flow-row {
-    grid-auto-flow: row;
-  }
-
-  .md\:grid-flow-col {
-    grid-auto-flow: column;
-  }
-
   .md\:grid-cols-8 {
     grid-template-columns: repeat(8, minmax(0, 1fr));
   }
@@ -1196,20 +1187,16 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-template-columns: repeat(7, minmax(0, 1fr));
   }
 
-  .md\:grid-cols-6 {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .md\:grid-cols-5 {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+  .md\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 
-  .md\:grid-rows-2 {
-    grid-template-rows: repeat(2, minmax(0, 1fr));
+  .md\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 
   .md\:flex-row {
@@ -1218,10 +1205,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .md\:gap-0 {
     gap: 0px;
-  }
-
-  .md\:gap-5 {
-    gap: 1.25rem;
   }
 
   .md\:gap-x-2 {
@@ -1300,6 +1283,10 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-column: span 2 / span 2;
   }
 
+  .lg\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+
   .lg\:col-start-3 {
     grid-column-start: 3;
   }
@@ -1310,6 +1297,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
   .lg\:col-start-5 {
     grid-column-start: 5;
+  }
+
+  .lg\:col-start-4 {
+    grid-column-start: 4;
+  }
+
+  .lg\:w-5\/6 {
+    width: 83.333333%;
+  }
+
+  .lg\:w-2\/3 {
+    width: 66.666667%;
   }
 
   .lg\:grid-cols-6 {
@@ -1324,8 +1323,36 @@ Ensure the default browser behavior of the `hidden` attribute.
     grid-template-columns: repeat(10, minmax(0, 1fr));
   }
 
+  .lg\:grid-cols-5 {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-8 {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+
+  .lg\:gap-5 {
+    gap: 1.25rem;
+  }
+
+  .lg\:self-start {
+    align-self: flex-start;
+  }
+
+  .lg\:justify-self-center {
+    justify-self: center;
   }
 
   .lg\:p-10 {
