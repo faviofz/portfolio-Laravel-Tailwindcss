@@ -30,7 +30,7 @@
                             'about',
                         ),
                     ])>
-                        Acerca de</a>
+                        Quién soy</a>
                 </li>
                 <li>
                     <a href="{{ route('project.index') }}" @class([
