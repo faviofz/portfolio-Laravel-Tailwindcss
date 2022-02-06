@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SaveProjectRequest;
 use App\Models\Project;
-use Illuminate\Http\Request;
+use App\Http\Requests\SaveProjectRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -23,7 +23,7 @@ class ProjectController extends Controller
     {
 
         return view('projects.index', [
-            'projects' => Project::latest()->simplePaginate(3)
+            'projects' => Project::latest()->simplePaginate(9)
         ]);
     }
 
@@ -45,7 +45,11 @@ class ProjectController extends Controller
      */
     public function store(SaveProjectRequest $request)
     {
-        Project::create($request->validated());
+        $project = new Project($request->validated());
+
+        $project->image = $request->file('image')->store('images', 'public');
+
+        $project->save();
 
         return redirect()->route('project.index')->with('status', 'El proyecto se guardó con éxito.');
     }
@@ -81,7 +85,17 @@ class ProjectController extends Controller
      */
     public function update(Project $project, SaveProjectRequest $request)
     {
-        $project->update($request->validated());
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($project->image);
+
+            $project->fill($request->validated());
+
+            $project->image = $request->file('image')->store('images', 'public');
+
+            $project->save();
+        } else {
+            $project->update($request->validated());
+        }
 
         return redirect()->route('project.show', $project)->with('status', 'El proyecto se actualizó con éxito.');
     }
@@ -94,6 +108,8 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        Storage::disk('public')->delete($project->image);
+
         $project->delete();
 
         return redirect()->route('project.index')->with('status', 'El proyecto se eliminó con éxito.');

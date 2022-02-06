@@ -4,12 +4,18 @@
 
 @section('content')
     <div class="container mx-auto p-3 grid grid-cols-none md:grid-cols-8">
+
         <div
-            class="md:col-start-2 md:col-span-6 bg-white rounded-md shadow-md p-5 flex flex-col md:grid md:grid-cols-2 md:gap-x-2">
+            class="md:col-start-2 md:col-span-6 bg-white rounded-md shadow-md overflow-hidden flex flex-col md:grid md:grid-cols-2 md:gap-x-2">
 
-            <img class="w-full object-fill rounded-md mb-2 md:mb-0" src="/img/card.svg" alt="test-image">
+            @if ($project->image)
+                <img class="w-full object-cover" src="{{ asset('storage/' . $project->image) }}"
+                    alt="{{ $project->title }}">
+            @else
+                <img class="w-full object-cover" src="/img/card.svg" alt="test-image">
+            @endif
 
-            <div class="flex flex-col">
+            <div class="flex flex-col p-4">
                 <h1 class="text-sky-500 font-semibold text-xl">{{ $project->title }}</h1>
 
                 <hr class="mb-2">
