@@ -2110,16 +2110,19 @@ document.getElementById('menu-button').addEventListener('click', function () {
 });
 var inputFile = document.getElementById('image'),
     imagePreview = document.getElementById('preview');
-inputFile.addEventListener('change', function () {
-  var files = inputFile.files;
 
-  if (!files) {
-    imagePreview.src = "";
-    return;
-  }
+if (inputFile) {
+  inputFile.addEventListener('change', function () {
+    var files = inputFile.files;
 
-  imagePreview.src = URL.createObjectURL(files[0]);
-});
+    if (!files) {
+      imagePreview.src = "";
+      return;
+    }
+
+    imagePreview.src = URL.createObjectURL(files[0]);
+  });
+}
 
 /***/ }),
 

@@ -20,17 +20,17 @@
         <hr class="mb-3">
 
         <div
-            class="flex flex-col md:flex-row md:flex-wrap justify-around items-center space-y-2
+            class="flex flex-col md:flex-row md:flex-wrap justify-around items-center space-y-2 md:space-y-0
         lg:grid lg:grid-cols-3 lg:grid-rows-3 lg:gap-5">
 
             @forelse ($projects as $project)
-                <div class="bg-white w-full rounded-lg shadow-lg flex flex-col overflow-hidden">
+                <div class="bg-white w-full rounded-lg shadow-lg flex flex-col overflow-hidden container">
 
                     @if ($project->image)
-                        <img class="w-full object-cover" src="{{ asset('storage/' . $project->image) }}"
+                        <img class="w-full object-cover h-60" src="{{ asset('storage/' . $project->image) }}"
                             alt="{{ $project->title }}">
                     @else
-                        <img class="w-full object-fill" src="/img/card.svg" alt="test-image">
+                        <img class="w-full object-cover h-60" src="/img/card.svg" alt="test-image">
                     @endif
 
                     <div class="p-4 flex flex-col justify-between">

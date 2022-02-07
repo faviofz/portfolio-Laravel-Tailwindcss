@@ -7,13 +7,15 @@ document.getElementById('menu-button').addEventListener('click', () => {
 const inputFile = document.getElementById('image'),
     imagePreview = document.getElementById('preview');
 
-inputFile.addEventListener('change', () => {
-    const files = inputFile.files;
+if (inputFile) {
+    inputFile.addEventListener('change', () => {
+        const files = inputFile.files;
 
-    if (!files) {
-        imagePreview.src = "";
-        return
-    }
+        if (!files) {
+            imagePreview.src = "";
+            return
+        }
 
-    imagePreview.src = URL.createObjectURL(files[0]);
-});
+        imagePreview.src = URL.createObjectURL(files[0]);
+    });
+}

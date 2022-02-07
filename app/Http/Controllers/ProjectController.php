@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Http\Requests\SaveProjectRequest;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\SaveProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -47,9 +48,16 @@ class ProjectController extends Controller
     {
         $project = new Project($request->validated());
 
-        $project->image = $request->file('image')->store('images', 'public');
+        $project->image = Storage::putFile('images', $request->file('image'));
 
         $project->save();
+
+        $image = Image::make(Storage::get($project->image))
+            ->widen(600)
+            ->limitColors(255)
+            ->encode();
+
+        Storage::put($project->image, $image);
 
         return redirect()->route('project.index')->with('status', 'El proyecto se guardó con éxito.');
     }
@@ -86,13 +94,20 @@ class ProjectController extends Controller
     public function update(Project $project, SaveProjectRequest $request)
     {
         if ($request->hasFile('image')) {
-            Storage::disk('public')->delete($project->image);
+            Storage::delete($project->image);
 
             $project->fill($request->validated());
 
-            $project->image = $request->file('image')->store('images', 'public');
+            $project->image = Storage::putFile('images', $request->file('image'));
 
             $project->save();
+
+            $image = Image::make(Storage::get($project->image))
+                ->widen(600)
+                ->limitColors(255)
+                ->encode();
+
+            Storage::put($project->image, $image);
         } else {
             $project->update($request->validated());
         }
@@ -108,7 +123,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        Storage::disk('public')->delete($project->image);
+        Storage::delete($project->image);
 
         $project->delete();
 

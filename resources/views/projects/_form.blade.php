@@ -9,7 +9,8 @@
 @include('partials.validation-errors')
 
 @if ($project->image)
-    <img class="w-full object-cover" src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}">
+    <img class="w-full object-cover" src="{{ asset('storage/' . $project->image) }}" alt="{{ $project->title }}"
+        id="preview">
 @else
     <img class="w-full object-cover" src="/img/card.svg" alt="test-image" id="preview">
 @endif
@@ -18,10 +19,10 @@
     <input
         class="block w-full rounded-md p-1 
         file:mr-4 file:py-2 file:px-4
-      file:rounded-full file:border-0
-      file:text-sm file:font-semibold
-      file:bg-gray-50 file:text-sky-500
-      hover:file:bg-gray-200"
+        file:rounded-full file:border-0
+        file:text-sm file:font-semibold
+        file:bg-gray-50 file:text-sky-500
+        hover:file:bg-gray-200"
         type="file" name="image" id="image">
 </label>
 

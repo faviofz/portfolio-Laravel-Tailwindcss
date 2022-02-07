@@ -10,7 +10,7 @@
 
             @if ($project->image)
                 <img class="w-full object-cover" src="{{ asset('storage/' . $project->image) }}"
-                    alt="{{ $project->title }}">
+                    alt="{{ $project->title }}" id="preview">
             @else
                 <img class="w-full object-cover" src="/img/card.svg" alt="test-image">
             @endif
@@ -38,7 +38,7 @@
                             Editar
                         </a>
                         <a class="px-3 py-1.5 bg-red-500 rounded-md text-white font-medium" href="#"
-                            onclick="event.preventDefault();document.getElementById('delete-poject').submit();">
+                            onclick="event.preventDefault();document.getElementById('delete-project').submit();">
                             Eliminar
                         </a>
                     </div>
