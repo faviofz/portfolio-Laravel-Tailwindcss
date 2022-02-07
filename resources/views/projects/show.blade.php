@@ -16,11 +16,12 @@
             @endif
 
             <div class="flex flex-col p-4">
-                <h1 class="text-sky-500 font-semibold text-xl">{{ $project->title }}</h1>
+                <h1 class="text-sky-500 font-semibold text-xl first-letter:uppercase">{{ $project->title }}</h1>
 
                 <hr class="mb-2">
 
-                <p class="italic text-gray-600 indent-3 grow">{{ $project->description }}. Lorem ipsum dolor sit amet
+                <p class="italic text-gray-600 indent-3 grow first-letter:uppercase">{{ $project->description }}. Lorem
+                    ipsum dolor sit amet
                     consectetur
                     adipisicing elit.
                     Maxime, assumenda non
