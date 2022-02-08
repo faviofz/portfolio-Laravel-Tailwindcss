@@ -1,12 +1,12 @@
 @extends('layout')
 
-@section('title', $project->title)
+@section('title', Str::title($project->title))
 
 @section('content')
     <div class="container mx-auto p-3 grid grid-cols-none md:grid-cols-8">
 
         <div
-            class="md:col-start-2 md:col-span-6 bg-white rounded-md shadow-md overflow-hidden flex flex-col md:grid md:grid-cols-2 md:gap-x-2">
+            class="md:col-start-2 md:col-span-6 bg-white rounded-md shadow-md overflow-hidden flex flex-col lg:grid lg:grid-cols-2 lg:gap-x-2">
 
             @if ($project->image)
                 <img class="w-full object-cover" src="{{ asset('storage/' . $project->image) }}"

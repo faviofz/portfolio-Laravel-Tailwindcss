@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="/css/app.css" rel="stylesheet">
-    <title>@yield('title')</title>
+    <title class="first-letter:uppercase">@yield('title')</title>
 </head>
 
 <body class="flex flex-col justify-between h-screen bg-slate-100">

@@ -29,7 +29,7 @@ class OptimizeProjectImage implements ShouldQueue
     public function handle(ProjectSaved $event)
     {
         $image = Image::make(Storage::get($event->project->image))
-            ->widen(600)
+            ->fit(800, 600)
             ->limitColors(255)
             ->encode();
 
