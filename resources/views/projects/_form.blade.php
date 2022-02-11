@@ -15,6 +15,8 @@
     <img class="w-full object-cover" src="/img/card.svg" alt="test-image" id="preview">
 @endif
 
+
+
 <label for="image" class="block">
     <input
         class="block w-full rounded-md p-1 
@@ -24,6 +26,17 @@
         file:bg-gray-50 file:text-sky-500
         hover:file:bg-gray-200"
         type="file" name="image" id="image">
+</label>
+
+<label for="category" class="block">
+    <select class="block w-full rounded-md bg-slate-200 p-1 outline-sky-500 h-8" name="category_id" id="category">
+        <option value="">Seleccionar categoría</option>
+        @foreach ($categories as $id => $name)
+            <option value="{{ $id }}" @selected ($id===$project->category_id) >
+                {{ $name }}
+            </option>
+        @endforeach
+    </select>
 </label>
 
 <label for="title" class="block">
