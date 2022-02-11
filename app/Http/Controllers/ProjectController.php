@@ -36,7 +36,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create', ['project' => new Project]);
+        return view('projects.create', [
+            'project' => new Project,
+            'categories' => Category::pluck('name', 'id')
+        ]);
     }
 
     /**
