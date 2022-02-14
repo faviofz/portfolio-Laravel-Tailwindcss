@@ -32,7 +32,7 @@
     <select class="block w-full rounded-md bg-slate-200 p-1 outline-sky-500 h-8" name="category_id" id="category">
         <option value="">Seleccionar categoría</option>
         @foreach ($categories as $id => $name)
-            <option value="{{ $id }}" @selected(old('category_id',$project->category_id) == $id)>
+            <option value="{{ $id }}" @selected($id==old('category_id',$project->category_id))>
                 {{ $name }}
             </option>
         @endforeach
