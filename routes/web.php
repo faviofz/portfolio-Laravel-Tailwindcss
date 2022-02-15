@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,12 +22,14 @@ Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
 
 Route::resource('portfolio', ProjectController::class)
-    ->names('project')
+    ->names('projects')
     ->parameters(['portfolio' => 'project']);
 
 
 Route::view('/contact', 'contact')->name('contact');
 Route::post('/contact', [MessageController::class, 'store'])->name('message.store');
+
+Route::get('/categorias/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::get('/email/verify', function () {
     return view('auth.verify-email');

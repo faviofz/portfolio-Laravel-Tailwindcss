@@ -19,5 +19,5 @@ mix.js('resources/js/app.js', 'public/js')
 mix.disableSuccessNotifications();
 
 mix.browserSync({
-    proxy: 'http://projects-app.test/'
+    proxy: 'http://projects-app.test:8080/'
 });

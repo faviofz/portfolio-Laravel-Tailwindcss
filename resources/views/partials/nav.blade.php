@@ -33,10 +33,10 @@
                         Quién soy</a>
                 </li>
                 <li>
-                    <a href="{{ route('project.index') }}" @class([
+                    <a href="{{ route('projects.index') }}" @class([
                         'block py-2 px-4 rounded border-b md:border-0',
                         'bg-sky-500 text-white md:bg-transparent md:text-sky-500' => request()->routeIs(
-                            'project.index',
+                            'projects.index',
                         ),
                     ])>Portafolio</a>
                 </li>

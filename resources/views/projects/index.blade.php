@@ -6,12 +6,22 @@
     <div class="container mx-auto p-3">
         <div class="flex justify-between items-end mb-1">
 
-            <h1 class="text-sky-500 font-semibold text-3xl">
-                Portafolio
-            </h1>
+            @isset($category)
+                <div>
+                    <h1 class="text-sky-500 font-semibold text-3xl">
+                        {{ $category->name }}
+                    </h1>
+                    <a class="text-gray-400 font-semibold hover:underline" href="{{ route('projects.index') }}">Volver</a>
+                </div>
+            @else
+                <h1 class="text-sky-500 font-semibold text-3xl">
+                    Portafolio
+                </h1>
+            @endisset
+
 
             @auth
-                <a class="px-2 py-1 bg-sky-500 rounded text-white" href="{{ route('project.create') }}">
+                <a class="px-2 py-1 bg-sky-500 rounded text-white" href="{{ route('projects.create') }}">
                     Crear proyecto
                 </a>
             @endauth
@@ -49,14 +59,16 @@
                                             d="M9.243 3.03a1 1 0 01.727 1.213L9.53 6h2.94l.56-2.243a1 1 0 111.94.486L14.53 6H17a1 1 0 110 2h-2.97l-1 4H15a1 1 0 110 2h-2.47l-.56 2.242a1 1 0 11-1.94-.485L10.47 14H7.53l-.56 2.242a1 1 0 11-1.94-.485L5.47 14H3a1 1 0 110-2h2.97l1-4H5a1 1 0 110-2h2.47l.56-2.243a1 1 0 011.213-.727zM9.03 8l-1 4h2.938l1-4H9.031z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    {{ $project->category->name }}
+                                    <a href="{{ route('categories.show', $project->category) }}">
+                                        {{ $project->category->name }}
+                                    </a>
                                 </span>
                             @endif
                         </div>
 
                         <div class="flex justify-between items-center">
 
-                            <a href="{{ route('project.show', $project) }}"
+                            <a href="{{ route('projects.show', $project) }}"
                                 class="px-3 py-1.5 bg-sky-500 text-white rounded-md">
                                 Ver mas
                             </a>

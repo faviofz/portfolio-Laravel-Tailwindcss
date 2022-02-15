@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Category;
 use App\Events\ProjectSaved;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SaveProjectRequest;
-use App\Models\Category;
 
 class ProjectController extends Controller
 {
@@ -23,10 +23,12 @@ class ProjectController extends Controller
      */
     public function index()
     {
-
-        return view('projects.index', [
-            'projects' => Project::with('category')->latest()->simplePaginate(9)
-        ]);
+        return view(
+            'projects.index',
+            [
+                'projects' => Project::with('category')->latest()->simplePaginate(9)
+            ]
+        );
     }
 
     /**
@@ -36,10 +38,13 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create', [
-            'project' => new Project,
-            'categories' => Category::pluck('name', 'id')
-        ]);
+        return view(
+            'projects.create',
+            [
+                'project' => new Project(),
+                'categories' => Category::pluck('name', 'id')
+            ]
+        );
     }
 
     /**
@@ -58,7 +63,7 @@ class ProjectController extends Controller
 
         ProjectSaved::dispatch($project);
 
-        return redirect()->route('project.index')->with('status', 'El proyecto se guardó con éxito.');
+        return redirect()->route('projects.index')->with('status', 'El proyecto se guardó con éxito.');
     }
 
     /**
@@ -80,17 +85,20 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', [
-            'project' => $project,
-            'categories' => Category::pluck('name', 'id')
-        ]);
+        return view(
+            'projects.edit',
+            [
+                'project' => $project,
+                'categories' => Category::pluck('name', 'id')
+            ]
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int                      $id
      * @return \Illuminate\Http\Response
      */
     public function update(Project $project, SaveProjectRequest $request)
@@ -109,7 +117,7 @@ class ProjectController extends Controller
             $project->update($request->validated());
         }
 
-        return redirect()->route('project.show', $project)->with('status', 'El proyecto se actualizó con éxito.');
+        return redirect()->route('projects.show', $project)->with('status', 'El proyecto se actualizó con éxito.');
     }
 
     /**
@@ -124,6 +132,6 @@ class ProjectController extends Controller
 
         $project->delete();
 
-        return redirect()->route('project.index')->with('status', 'El proyecto se eliminó con éxito.');
+        return redirect()->route('projects.index')->with('status', 'El proyecto se eliminó con éxito.');
     }
 }
