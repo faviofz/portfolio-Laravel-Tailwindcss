@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Events\ProjectSaved;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SaveProjectRequest;
+use Illuminate\Support\Facades\Cache;
 
 class ProjectController extends Controller
 {
@@ -23,10 +24,16 @@ class ProjectController extends Controller
      */
     public function index()
     {
+        $key = 'projects.page.' . request('page', 1);
+
+        $projects = Cache::rememberForever($key, function () {
+            return Project::with('category')->latest()->simplePaginate(9);
+        });
+
         return view(
             'projects.index',
             [
-                'projects' => Project::with('category')->latest()->simplePaginate(9)
+                'projects' => $projects
             ]
         );
     }
@@ -63,6 +70,8 @@ class ProjectController extends Controller
 
         ProjectSaved::dispatch($project);
 
+        Cache::flush();
+
         return redirect()->route('projects.index')->with('status', 'El proyecto se guardó con éxito.');
     }
 
@@ -72,8 +81,12 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project)
+    public function show($url)
     {
+        $project = Cache::rememberForever("projects.{$url}", function () use ($url) {
+            return Project::where('url', $url)->with('category')->firstOrFail();
+        });
+
         return view('projects.show', ['project' => $project]);
     }
 
@@ -83,13 +96,20 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project)
+    public function edit($url)
     {
+        $project = Cache::rememberForever("projects.{$url}", function () use ($url) {
+            return Project::where('url', $url)->with('category')->firstOrFail();
+        });
+
+        $categories = Cache::remember("categories.id-name", 300, function () {
+            return Category::pluck('name', 'id');
+        });
         return view(
             'projects.edit',
             [
                 'project' => $project,
-                'categories' => Category::pluck('name', 'id')
+                'categories' => $categories
             ]
         );
     }
@@ -97,8 +117,8 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
      * @param  int                      $id
+     * @param  \Illuminate\Http\SaveProjectRequest $request
      * @return \Illuminate\Http\Response
      */
     public function update(Project $project, SaveProjectRequest $request)
@@ -117,6 +137,8 @@ class ProjectController extends Controller
             $project->update($request->validated());
         }
 
+        Cache::flush();
+
         return redirect()->route('projects.show', $project)->with('status', 'El proyecto se actualizó con éxito.');
     }
 
@@ -131,6 +153,8 @@ class ProjectController extends Controller
         Storage::delete($project->image);
 
         $project->delete();
+
+        Cache::flush();
 
         return redirect()->route('projects.index')->with('status', 'El proyecto se eliminó con éxito.');
     }

@@ -30,7 +30,7 @@
         <hr class="mb-3">
 
         <div
-            class="flex flex-col justify-around items-center space-y-2 md:space-y-8 lg:space-y-0 lg:grid lg:grid-cols-3 lg:grid-rows-3 lg:gap-5">
+            class="flex flex-col justify-around items-center space-y-2 md:space-y-8 lg:space-y-0 lg:grid lg:grid-cols-3 lg:auto-rows-auto lg:gap-5">
 
             @forelse ($projects as $project)
                 <div class="bg-white w-full rounded-lg shadow-lg flex flex-col overflow-hidden container">
