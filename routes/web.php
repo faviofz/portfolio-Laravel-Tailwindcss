@@ -31,12 +31,12 @@ Route::post('/contact', [MessageController::class, 'store'])->name('message.stor
 
 Route::get('/categorias/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+// Route::get('/email/verify', function () {
+//     return view('auth.verify-email');
+// })->middleware('auth')->name('verification.notice');
 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+// Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+//     $request->fulfill();
 
-    return redirect('/');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+//     return redirect('/');
+// })->middleware(['auth', 'signed'])->name('verification.verify');
