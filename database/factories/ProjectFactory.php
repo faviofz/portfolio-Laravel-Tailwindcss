@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,7 +21,8 @@ class ProjectFactory extends Factory
             'title' => $title = $this->faker->sentence(2, false),
             'url' => str($title)->slug(),
             'description' => "Descripcion de " . $title,
-            'image' => $this->faker->imageUrl(800, 600)
+            'image' => Storage::putFile('images', $this->faker->image(null, 800, 600)),
+            'category_id' => $this->faker->numberBetween(1, 4)
         ];
     }
 }
