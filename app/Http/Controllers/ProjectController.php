@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Category;
 use App\Events\ProjectSaved;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\SaveProjectRequest;
-use Illuminate\Support\Facades\Cache;
 
 class ProjectController extends Controller
 {
@@ -57,7 +57,7 @@ class ProjectController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\SaveProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(SaveProjectRequest $request)
@@ -78,7 +78,7 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $url
      * @return \Illuminate\Http\Response
      */
     public function show($url)
@@ -93,7 +93,7 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $url
      * @return \Illuminate\Http\Response
      */
     public function edit($url)
@@ -117,7 +117,7 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int                      $id
+     * @param  \App\Models\Project $project
      * @param  \Illuminate\Http\SaveProjectRequest $request
      * @return \Illuminate\Http\Response
      */
@@ -145,7 +145,7 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
     public function destroy(Project $project)
